@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: joshwhieb-com-tls
+spec:
+  secretName: joshwhieb-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: joshwhieb.com
+  dnsNames:
+    - joshwhieb.com
+    - www.joshwhieb.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - joshwhieb.com
+          - www.joshwhieb.com
